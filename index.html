@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cairo:wght@200;300;500&family=Poppins:wght@200;300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Css/Tic_tac_toe.css">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+    <div class="intro" id="intro">
+        <div class="introtext">
+            <h1>Tic TaC ToE</h1>
+            <section class="playas">
+                <h2 id="playAsX">Play as X</h2>
+                <h2 id="playAsO">Play as 0</h2>
+            </section>
+        </div>
+    </div>
+    <div class="board" id="board">
+        <h1>Tic TaC ToE</h1>
+        <h3>turn:<span id="turn"></span></h3>
+        <table>
+            <tr>
+                <td class="cell" id="0"></td>
+                <td class="cell" id="1"></td>
+                <td class="cell" id="2"></td>
+            </tr>
+            <tr>
+                <td class="cell" id="3"></td>
+                <td class="cell" id="4"></td>
+                <td class="cell" id="5"></td>
+            </tr>
+            <tr>
+                <td class="cell" id="6"></td>
+                <td class="cell" id="7"></td>
+                <td class="cell" id="8"></td>
+            </tr>
+        </table>
+        <div class="endgame" id="endgame">
+            <section><span id="winner"></span></section>
+            <h5 id="playagain">Play Again</h5>
+        </div>
+    </div>
+
+    <script src="js/Tic_tac_toe.js"></script>
+</body>
+
+</html>
