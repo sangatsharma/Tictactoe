@@ -2,9 +2,33 @@ body {
     background-color: silver;
     margin: 0;
     padding: 0;
-    font-family: cursive;
+    font-family: 'Fredoka One';
+
+}
+*{
     overflow: hidden;
 }
+.cell{
+    transition: transform 0.3s ease
+}
+
+.cell.clicked {
+    animation: zoomIn 0.3s; 
+    /* Apply animation when clicked */
+    
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.5);
+    }
+}
+
+
+
 
 td {
     border: 6px solid gainsboro;
@@ -14,6 +38,7 @@ td {
     vertical-align: middle;
     font-size: 70px;
     cursor: pointer;
+    transition:  1.5s ease-in;
 
 }
 
@@ -67,6 +92,7 @@ table tr td:last-child {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    padding: 10px;
 }
 
 .playas {
@@ -88,22 +114,24 @@ table tr td:last-child {
 
 .endgame {
     visibility: hidden;
-    font-size: 400%;
+    font-size: 350%;
     display: flex;
     flex-direction: column;
+    /* margin-top: 128%; */
+    margin-top: 440px;
     align-items: center;
-    justify-content: center;
-    height: 70vh;
+    height: fit-content;
+    width: auto;
 }
 
 .endgame h5 {
-    position: relative;
+    position: absolute;
     border: 1px solid black;
     border-radius: 40px;
-    padding: 15px;
+    padding: 8px;
     cursor: pointer;
 }
-.endgame h5:hover{
+
+.endgame h5:hover {
     border: 1px solid white;
 }
-
