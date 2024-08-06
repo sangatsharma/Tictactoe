@@ -8,12 +8,21 @@
       href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
     <link rel="stylesheet" type="text/css" href="Css/Tic_tac_toe.css" />
     <title>Tic Tac Toe</title>
   </head>
 
   <body>
+   
     <div class="introtext" id="intro">
+      <div id="musicToggle" title="Toggle Music">
+        <i class="fas fa-volume-off" id="musicIcon"></i>
+      </div>
       <h1>Tic TaC ToE</h1>
       <section class="playTypeContainer" id="playTypeContainer">
         <h2 id="playTwoPlayer">Play offline</h2>
@@ -29,15 +38,13 @@
     <div class="board" id="board">
       <h1>Tic TaC ToE</h1>
       <div class="infoBar">
-      <div id="onlineInfo">
-        <p id="player"></p>
-        <p id="opponent"></p>
-      </div>  
-      <p>turn: <span id="turn"></span></p>
+        <div id="onlineInfo">
+          <p id="player"></p>
+          <p id="opponent"></p>
+        </div>
+        <p>turn: <span id="turn"></span></p>
       </div>
-      
 
-     
       <table>
         <tr>
           <td class="cell" id="0"></td>
@@ -61,6 +68,46 @@
       <section><span id="winner"></span></section>
       <h5 id="playagain">Play Again</h5>
     </div>
+
+    <!-- music and sound effects -->
+    <audio
+      id="backgroundMusic"
+      src="/sounds/gameMusic.mp3"
+      preload="auto"
+      loop
+    ></audio>
+
+    <audio
+      id="buttonClickSound"
+      src="/sounds/buttonClick.mp3"
+      preload="auto"
+    ></audio>
+    <audio
+      id="boardClickSound"
+      src="/sounds/boardclick.mp3"
+      preload="auto"
+    ></audio>
+    <audio
+    id="gameOverSound"
+    src="/sounds/matchLost.mp3"
+    preload="auto"
+  ></audio>
+  <audio
+  id="gameWinSound"
+  src="/sounds/matchWin.mp3"
+  preload="auto"
+></audio>
+<audio
+id="matchFoundSound"
+src="/sounds/matchFound.mp3"
+preload="auto"
+></audio>
+<audio
+id="matchDrawSound"
+src="/sounds/matchDraw.mp3"
+preload="auto"
+></audio>
+    
 
     <script src="js/Tic_tac_toe.js"></script>
   </body>

@@ -50,6 +50,18 @@ To play with a friend on the same device:
 - **Minimax Algorithm**: This algorithm evaluates all possible moves to determine the best possible outcome for the AI.
 - **Alpha-Beta Pruning**: Optimizes the Minimax algorithm by eliminating branches that don't need to be explored, making the AI faster and more efficient.
 
+## Sound Effects
+
+To make the game more engaging, sound effects have been added for the following actions:
+
+- **Placing a Mark**: A sound plays whenever a player places their mark on the board.
+- **Winning the Game**: An audio cue is played when a player wins.
+- **Losing the Game**: A sound effect indicates when a player loses.
+- **Draw**: A sound plays when the game ends in a draw.
+- **Opponent found**: A sound plays when the matchmaking is found online.
+
+The sound effects are automatically played during the game, adding a layer of excitement and feedback.
+
 ## Technical Details
 
 - **Technologies Used**: HTML, CSS, JavaScript

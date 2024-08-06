@@ -9,6 +9,53 @@ const winingCombinations = [
   [2, 5, 8],
 ];
 
+// game soundeffects and music
+var backgroundMusic = document.getElementById("backgroundMusic");
+backgroundMusic.play();
+var buttonClickSound = document.getElementById("buttonClickSound");
+var boardClickSound = document.getElementById("boardClickSound");
+var gameOverSound = document.getElementById("gameOverSound");
+var gameWinSound = document.getElementById("gameWinSound");
+var matchFoundSound = document.getElementById("matchFoundSound");
+var matchDrawSound = document.getElementById("matchDrawSound");
+
+document.addEventListener("DOMContentLoaded", function () {
+  var backgroundMusic = document.getElementById("backgroundMusic");
+  var musicToggle = document.getElementById("musicToggle");
+  var musicIcon = document.getElementById("musicIcon");
+
+  // Initial state
+  let musicPlaying = false;
+
+  function playMusic() {
+    backgroundMusic
+      .play()
+      .then(() => {
+        musicPlaying = true;
+        musicIcon.classList.replace("fa-volume-off", "fa-volume-up");
+      })
+      .catch((error) => {
+        console.error("Autoplay prevented:", error);
+      });
+  }
+
+  function pauseMusic() {
+    backgroundMusic.pause();
+    musicPlaying = false;
+    musicIcon.classList.replace("fa-volume-up", "fa-volume-off");
+  }
+  musicToggle.addEventListener("click", function () {
+    buttonClickSound.play();
+    if (musicPlaying) {
+      pauseMusic();
+    } else {
+      playMusic();
+    }
+  });
+  // Try to play the music when the site loads
+  playMusic();
+});
+
 var cells = document.querySelectorAll(".cell");
 //gameType buttons
 var gameType;
@@ -28,6 +75,7 @@ var endgame = document.getElementById("endgame");
 var winner = document.getElementById("winner");
 var loading = document.getElementById("loading");
 var turn;
+// for aiPlayer
 let COUNT = 1;
 var win = null;
 var Board = ["", "", "", "", "", "", "", "", ""];
@@ -39,17 +87,21 @@ var onlineInfo = document.getElementById("onlineInfo");
 var player = document.getElementById("player");
 var opponent = document.getElementById("opponent");
 let isMyTurn = false;
+
 playAI.onclick = () => {
+  buttonClickSound.play();
   gameType = "AI";
   playTypeContainer.style.display = "none";
   playAsContainer.style.visibility = "visible";
 };
 playTwoPlayer.onclick = () => {
+  buttonClickSound.play();
   gameType = "TwoPlayer";
   playTypeContainer.style.display = "none";
   playAsContainer.style.visibility = "visible";
 };
 playOnline.onclick = () => {
+  buttonClickSound.play();
   gameType = "Online";
   userName = prompt("Enter your name");
   setupWebSocket();
@@ -58,12 +110,14 @@ playOnline.onclick = () => {
 };
 
 playAsX.onclick = () => {
+  buttonClickSound.play();
   startGame("X");
   aiPlayer = "O";
   human = "X";
 };
 
 playAsO.onclick = () => {
+  buttonClickSound.play();
   startGame("O");
   aiPlayer = "X";
   human = "O";
@@ -83,6 +137,7 @@ cells.forEach((cell) => {
 
 function tick(e) {
   if (gameType === "Online" && !isMyTurn) return;
+  boardClickSound.play();
   const clickedCell = e.target;
   const cellIndex = Array.from(cells).indexOf(clickedCell);
 
@@ -120,12 +175,18 @@ function checkwin() {
       highlightWinningCells([a, b, c]);
       result(`${cellA} Wins!`);
       disableBoard();
+      if (gameType === "Online" && cellA !== playerSymbol) {
+        gameOverSound.play();
+      } else {
+        gameWinSound.play();
+      }
       return cellA; // Return "X" or "O"
     }
   }
 
   if (!ismovesleft()) {
     result("Draw!");
+    matchDrawSound.play();
     return "Draw";
   }
 
@@ -310,6 +371,7 @@ function setupWebSocket() {
       console.log("data", data);
 
       if (data.type === "start") {
+        matchFoundSound.play();
         playerSymbol = data.symbol;
         isMyTurn = playerSymbol === "X";
         player.innerHTML = userName + " : " + playerSymbol;
@@ -319,7 +381,7 @@ function setupWebSocket() {
 
       if (data.type === "waiting") {
         loading.style.display = "flex";
-        loading.innerHTML = "Waiting for another player to join...";
+        loading.innerHTML = "Searching opponent...";
       } else if (data.type === "opponent") {
         opponent.innerHTML =
           data.name + " : " + (playerSymbol === "X" ? "O" : "X");
