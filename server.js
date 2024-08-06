@@ -5,7 +5,6 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-let players = {};
 let waitingPlayer = null; // To store the waiting player
 wss.on("connection", (ws) => {
   if (waitingPlayer) {
