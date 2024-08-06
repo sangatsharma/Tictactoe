@@ -50,6 +50,6 @@ wss.on("connection", (ws) => {
 server.listen(8000, () => {
   console.log("Server is listening on port 8080");
 });
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+app.get('/', (req, res) => {
+  res.send('Hello, World!'); 
 });
