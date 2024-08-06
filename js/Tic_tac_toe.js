@@ -170,8 +170,10 @@ restart.onclick = () => {
 //Swap turn between players X and O
 function swapTurn() {
   turn = turn === "X" ? "O" : "X";
-  isMyTurn = gameType === "Online" && turn === playerSymbol; // Update turn status
-  updateCellClickability(); // Update cell clickability based on new turn
+  if (gameType === "Online") {
+    isMyTurn = gameType === "Online" && turn === playerSymbol; // Update turn status
+    updateCellClickability();
+  } // Update cell clickability based on new turn
 }
 
 function updateCellClickability() {
