@@ -34,9 +34,9 @@ Visit the following link to start playing the game: [Play Tic-Tac-Toe](https://s
 - **Technologies Used**: HTML, CSS, JavaScript
 - **AI Implementation**: The AI is implemented using the Minimax algorithm with Alpha-Beta pruning to optimize its decision-making process.
 - **Project Structure**:
-  - `index.html`: The main HTML file for the game interface.
-  - `style.css`: Styles for the game layout and design.
-  - `script.js`: JavaScript logic for game mechanics and AI functionality.
+  - `/index.html`: The main HTML file for the game interface.
+  - `css/Tic_tac_toe.css`: Styles for the game layout and design.
+  - `js/Tic_tac_toe.js`: JavaScript logic for game mechanics and AI functionality.
 
 ## Development
 
@@ -47,5 +47,5 @@ If you want to run the project locally or contribute, follow these steps:
    ```bash
    git clone https://github.com/sangatsharma/Tictactoe.git
    cd Tictactoe
-   
+
 2. **Open index.html in a browser to start the game locally.**
