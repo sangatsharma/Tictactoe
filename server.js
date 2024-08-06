@@ -5,17 +5,22 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-
+let players = {};
 let waitingPlayer = null; // To store the waiting player
 wss.on("connection", (ws) => {
+  players[ws] = data.username;
   if (waitingPlayer) {
     // If there's a waiting player, pair them
     const player1 = waitingPlayer;
     const player2 = ws;
     waitingPlayer = null;
 
-    player1.send(JSON.stringify({ type: "start", symbol: "X" }));
-    player2.send(JSON.stringify({ type: "start", symbol: "O" }));
+    player1.send(
+      JSON.stringify({ type: "start", symbol: "X", opponent: players[player2] })
+    );
+    player2.send(
+      JSON.stringify({ type: "start", symbol: "O", opponent: players[player1] })
+    );
 
     player1.on("message", (message) => {
       let msg = JSON.stringify(message);
@@ -42,6 +47,6 @@ wss.on("connection", (ws) => {
   });
 });
 
-server.listen(8080, () => {
+server.listen(8000, () => {
   console.log("Server is listening on port 8080");
 });

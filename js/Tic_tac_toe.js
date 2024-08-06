@@ -33,11 +33,12 @@ var win = null;
 var Board = ["", "", "", "", "", "", "", "", ""];
 var aiPlayer, human;
 //for online multiplayer
+var userName;
 let playerSymbol;
 var onlineInfo = document.getElementById("onlineInfo");
-var player1 = document.getElementById("player");
+var player = document.getElementById("player");
 var opponent = document.getElementById("opponent");
-
+let isMyTurn = false;
 playAI.onclick = () => {
   gameType = "AI";
   playTypeContainer.style.display = "none";
@@ -50,6 +51,7 @@ playTwoPlayer.onclick = () => {
 };
 playOnline.onclick = () => {
   gameType = "Online";
+  userName = prompt("Enter your name");
   setupWebSocket();
   onlineInfo.style.display = "block";
   playTypeContainer.style.display = "none";
@@ -80,7 +82,7 @@ cells.forEach((cell) => {
 });
 
 function tick(e) {
-  if (gameType === "Online" && turn !== playerSymbol) return;
+  if (gameType === "Online" && !isMyTurn) return;
   const clickedCell = e.target;
   const cellIndex = Array.from(cells).indexOf(clickedCell);
 
@@ -167,11 +169,19 @@ restart.onclick = () => {
 
 //Swap turn between players X and O
 function swapTurn() {
-  if (turn === "X") {
-    turn = "O";
-  } else {
-    turn = "X";
-  }
+  turn = turn === "X" ? "O" : "X";
+  isMyTurn = gameType === "Online" && turn === playerSymbol; // Update turn status
+  updateCellClickability(); // Update cell clickability based on new turn
+}
+
+function updateCellClickability() {
+  cells.forEach((cell) => {
+    if (isMyTurn && cell.innerHTML === "") {
+      cell.style.pointerEvents = "auto";
+    } else {
+      cell.style.pointerEvents = "none";
+    }
+  });
 }
 
 // *******************************##################################************************************
@@ -291,7 +301,7 @@ let socket;
 
 function setupWebSocket() {
   if (gameType === "Online") {
-    socket = new WebSocket("ws://localhost:8080");
+    socket = new WebSocket("ws://localhost:8000");
 
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
@@ -299,14 +309,17 @@ function setupWebSocket() {
 
       if (data.type === "start") {
         playerSymbol = data.symbol;
-        player1.innerHTML = "Player: " + playerSymbol;
-        opponent.innerHTML = "Opponent: " + (playerSymbol === "X" ? "O" : "X");
+        isMyTurn = playerSymbol === "X";
+        player.innerHTML = userName + " : " + playerSymbol;
         startGame("X");
+        socket.send(JSON.stringify({ type: "opponent", name: userName }));
       }
 
       if (data.type === "waiting") {
         loading.style.display = "flex";
         loading.innerHTML = "Waiting for another player to join...";
+      } else if (data.type === "opponent") {
+        opponent.innerHTML = data.name +" : "+ (playerSymbol === "X" ? "O" : "X");
       } else {
         loading.style.display = "none";
       }
@@ -350,7 +363,9 @@ function receiveMove(position, symbol) {
     cell.innerHTML = symbol; // Update the cell with the opponent's symbol
     cell.style.cursor = "not-allowed"; // Disable further interaction with this cell
     cell.classList.add("clicked"); // Mark the cell as clicked
-    cell.removeEventListener("click", tick); // Remove the click event listener
+    cell.removeEventListener("click", tick);
+    // Remove the click event listener
+    checkwin();
     swapTurn();
     playerturn.innerHTML = turn;
   }
