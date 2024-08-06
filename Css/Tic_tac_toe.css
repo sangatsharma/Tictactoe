@@ -3,6 +3,8 @@ body {
   margin: 5px;
   padding: 0;
   font-family: "Fredoka One";
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 * {
   overflow: hidden;
