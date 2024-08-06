@@ -48,8 +48,8 @@ wss.on("connection", (ws) => {
 });
 
 server.listen(8000, () => {
-  console.log("Server is listening on port 8080");
+  console.log("Server is listening on port 8000");
 });
-app.get('/', (req, res) => {
-  res.send('Hello, World!'); 
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
 });

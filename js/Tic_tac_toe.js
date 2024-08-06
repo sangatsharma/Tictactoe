@@ -301,7 +301,7 @@ let socket;
 
 function setupWebSocket() {
   if (gameType === "Online") {
-    socket = new WebSocket("ws://localhost:8000");
+    socket = new WebSocket("ws:tictactoe-xi-eight.vercel.app:8000");
 
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
@@ -319,7 +319,8 @@ function setupWebSocket() {
         loading.style.display = "flex";
         loading.innerHTML = "Waiting for another player to join...";
       } else if (data.type === "opponent") {
-        opponent.innerHTML = data.name +" : "+ (playerSymbol === "X" ? "O" : "X");
+        opponent.innerHTML =
+          data.name + " : " + (playerSymbol === "X" ? "O" : "X");
       } else {
         loading.style.display = "none";
       }
