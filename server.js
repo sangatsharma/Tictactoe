@@ -8,30 +8,27 @@ const wss = new WebSocket.Server({ server });
 let players = {};
 let waitingPlayer = null; // To store the waiting player
 wss.on("connection", (ws) => {
-  players[ws] = data.username;
   if (waitingPlayer) {
     // If there's a waiting player, pair them
     const player1 = waitingPlayer;
     const player2 = ws;
     waitingPlayer = null;
 
-    player1.send(
-      JSON.stringify({ type: "start", symbol: "X", opponent: players[player2] })
-    );
-    player2.send(
-      JSON.stringify({ type: "start", symbol: "O", opponent: players[player1] })
-    );
+    player1.send(JSON.stringify({ type: "start", symbol: "X" }));
+    player2.send(JSON.stringify({ type: "start", symbol: "O" }));
 
     player1.on("message", (message) => {
-      let msg = JSON.stringify(message);
+      const msg = JSON.parse(message);
       console.log(msg);
-      player2.send(msg); // Forward move to the opponent
+      // Forward move to the opponent
+      player2.send(JSON.stringify(msg));
     });
 
     player2.on("message", (message) => {
-      let msg = JSON.stringify(message);
+      const msg = JSON.parse(message.toString());
       console.log(msg);
-      player1.send(msg); // Forward move to the opponent
+      // Forward move to the opponent
+      player1.send(JSON.stringify(msg));
     });
   } else {
     // If no waiting player, set this player as waiting
