@@ -303,7 +303,7 @@ let socket;
 
 function setupWebSocket() {
   if (gameType === "Online") {
-    socket = new WebSocket("ws:tictactoe-xi-eight.vercel.app:8000");
+    socket = new WebSocket("ws://tictactoe-xi-eight.vercel.app:8000");
 
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
