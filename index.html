@@ -15,14 +15,29 @@
   <body>
     <div class="introtext" id="intro">
       <h1>Tic TaC ToE</h1>
-      <section class="playas">
+      <section class="playTypeContainer" id="playTypeContainer">
+        <h2 id="playTwoPlayer">Play offline</h2>
+        <h2 id="playOnline">Play online</h2>
+        <h3 id="playAI">Play with Computer</h3>
+      </section>
+      <section class="playAsContainer" id="playAsContainer">
         <h2 id="playAsX">Play as X</h2>
         <h2 id="playAsO">Play as 0</h2>
       </section>
     </div>
+    <div id="loading">loading</div>
     <div class="board" id="board">
       <h1>Tic TaC ToE</h1>
-      <h3>turn: <span id="turn"></span></h3>
+      <div class="infoBar">
+      <div id="onlineInfo">
+        <p id="player"></p>
+        <p id="opponent"></p>
+      </div>  
+      <p>turn: <span id="turn"></span></p>
+      </div>
+      
+
+     
       <table>
         <tr>
           <td class="cell" id="0"></td>
@@ -41,6 +56,7 @@
         </tr>
       </table>
     </div>
+
     <div class="endgame" id="endgame">
       <section><span id="winner"></span></section>
       <h5 id="playagain">Play Again</h5>

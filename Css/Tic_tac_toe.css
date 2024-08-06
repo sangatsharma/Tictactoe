@@ -25,7 +25,20 @@ body {
     transform: scale(1.5);
   }
 }
-
+#loading {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+}
+#onlineInfo {
+  display: none;
+}
 td {
   border: 6px solid gainsboro;
   height: 120px;
@@ -46,11 +59,19 @@ table {
   @media screen and (max-width: 600px) {
   }
 }
+.infoBar {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+}
 .board {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2px;
 }
 
 #board {
@@ -94,11 +115,36 @@ table tr td:last-child {
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
     width: 90%;
-    margin: 50% 3%;
+    margin: 35% 3%;
   }
 }
 
-.playas {
+.playTypeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    font-size: 2rem;
+  }
+}
+.playTypeContainer h2,
+h3 {
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.playTypeContainer h2:hover,
+h3:hover {
+  border: 1px solid white;
+}
+
+.playAsContainer {
+  visibility: hidden;
   display: flex;
   flex-direction: row;
   @media screen and (max-width: 600px) {
@@ -106,7 +152,7 @@ table tr td:last-child {
   }
 }
 
-.playas h2 {
+.playAsContainer h2 {
   border: 1px solid black;
   border-radius: 40px;
   padding: 15px;
@@ -114,7 +160,7 @@ table tr td:last-child {
   cursor: pointer;
 }
 
-.playas h2:hover {
+.playAsContainer h2:hover {
   border: 1px solid white;
 }
 
