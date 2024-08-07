@@ -11,7 +11,6 @@ const winingCombinations = [
 
 // game soundeffects and music
 var backgroundMusic = document.getElementById("backgroundMusic");
-backgroundMusic.play();
 var buttonClickSound = document.getElementById("buttonClickSound");
 var boardClickSound = document.getElementById("boardClickSound");
 var gameOverSound = document.getElementById("gameOverSound");
@@ -32,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .play()
       .then(() => {
         musicPlaying = true;
+        localStorage.setItem("musicPlaying", musicPlaying);
         musicIcon.classList.replace("fa-volume-off", "fa-volume-up");
       })
       .catch((error) => {
@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function pauseMusic() {
     backgroundMusic.pause();
     musicPlaying = false;
+    localStorage.setItem("musicPlaying", musicPlaying);
     musicIcon.classList.replace("fa-volume-up", "fa-volume-off");
   }
   musicToggle.addEventListener("click", function () {
@@ -53,7 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   // Try to play the music when the site loads
-  playMusic();
+  if (localStorage.getItem("musicPlaying") === "true") {
+    playMusic();
+  }
 });
 
 var cells = document.querySelectorAll(".cell");
@@ -192,6 +195,9 @@ function checkwin() {
       disableBoard();
       if (gameType === "Online" && cellA !== playerSymbol) {
         gameOverSound.play();
+      }
+      if (gameType !== "Online" && cellA !== human) {
+        gameOverSound.play();
       } else {
         gameWinSound.play();
       }
@@ -213,7 +219,7 @@ function highlightWinningCells(indices, symbol) {
     indices.forEach((index) => {
       cells[index].style.backgroundColor = "green";
     });
-  }else{
+  } else {
     indices.forEach((index) => {
       cells[index].style.backgroundColor = "red";
     });
