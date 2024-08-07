@@ -71,9 +71,11 @@ var introScreen = document.getElementById("intro");
 var board = document.getElementById("board");
 var playerturn = document.getElementById("turn");
 var restart = document.getElementById("playagain");
+var userNameEntry = document.getElementById("userNameEntry");
 var endgame = document.getElementById("endgame");
 var winner = document.getElementById("winner");
 var loading = document.getElementById("loading");
+var textField = document.getElementById("userName");
 var turn;
 // for aiPlayer
 let COUNT = 1;
@@ -103,10 +105,23 @@ playTwoPlayer.onclick = () => {
 playOnline.onclick = () => {
   buttonClickSound.play();
   gameType = "Online";
-  userName = prompt("Enter your name");
-  setupWebSocket();
-  onlineInfo.style.display = "block";
   playTypeContainer.style.display = "none";
+  userNameEntry.style.display = "flex";
+  document.getElementById("confirmUserName").addEventListener("click", () => {
+    buttonClickSound.play();
+    let value = textField.value;
+    if (value.trim()) {
+      console.log(value);
+      userName = value;
+      userNameEntry.style.display = "none";
+      loading.style.display = "flex";
+      loading.innerHTML = "Establishing connection...";
+      setupWebSocket();
+      onlineInfo.style.display = "block";
+    } else {
+      textField.value = "player1";
+    }
+  });
 };
 
 playAsX.onclick = () => {
@@ -225,7 +240,10 @@ function result(e) {
   endgame.style.zIndex = 1;
 }
 restart.onclick = () => {
-  location.reload();
+  buttonClickSound.play();
+  setTimeout(() => {
+    location.reload();
+  }, 100);
 };
 
 //Swap turn between players X and O
@@ -383,8 +401,12 @@ function setupWebSocket() {
         loading.style.display = "flex";
         loading.innerHTML = "Searching opponent...";
       } else if (data.type === "opponent") {
+        let opponentName = data.name;
+        if (data.name == "player1" || data.name=="" || !data.name) {
+          opponentName = "Opponent";
+        }
         opponent.innerHTML =
-          data.name + " : " + (playerSymbol === "X" ? "O" : "X");
+          opponentName + " : " + (playerSymbol === "X" ? "O" : "X");
       } else {
         loading.style.display = "none";
       }

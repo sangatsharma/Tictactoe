@@ -29,7 +29,6 @@ body {
   font-size: 24px;
   cursor: pointer;
   position: relative;
-
 }
 
 #loading {
@@ -40,16 +39,14 @@ body {
   width: 100vw;
   font-size: 1.5rem;
   font-weight: bold;
-
-
 }
 #onlineInfo {
   display: none;
 }
 td {
   border: 6px solid gainsboro;
-  height: 120px;
-  width: 100px;
+  height: 110px;
+  width: 110px;
   text-align: center;
   vertical-align: middle;
   font-size: 70px;
@@ -67,7 +64,7 @@ table {
   }
 }
 .infoBar {
-  width: 60%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,6 +166,40 @@ h3:hover {
 }
 
 .playAsContainer h2:hover {
+  border: 1px solid white;
+}
+
+.userNameEntry {
+  position: relative;
+  margin: auto;
+  margin-top: -100px;
+  width: fit-content;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+#userName {
+  background-color: transparent;
+  height: 40px;
+  padding: 5px 18px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+#userName:focus,#userName:hover{
+  border: 2px solid white;
+  outline: none;
+}
+
+#confirmUserName {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 15px;
+  margin: auto;
+  cursor: pointer;
+}
+#confirmUserName:hover {
   border: 1px solid white;
 }
 
