@@ -187,7 +187,7 @@ function checkwin() {
 
     if (cellA !== "" && cellA === cellB && cellA === cellC) {
       // We have a winner
-      highlightWinningCells([a, b, c]);
+      highlightWinningCells([a, b, c], cellA);
       result(`${cellA} Wins!`);
       disableBoard();
       if (gameType === "Online" && cellA !== playerSymbol) {
@@ -208,10 +208,16 @@ function checkwin() {
   return false;
 }
 
-function highlightWinningCells(indices) {
-  indices.forEach((index) => {
-    cells[index].style.backgroundColor = "green";
-  });
+function highlightWinningCells(indices, symbol) {
+  if (human == symbol || playerSymbol == symbol) {
+    indices.forEach((index) => {
+      cells[index].style.backgroundColor = "green";
+    });
+  }else{
+    indices.forEach((index) => {
+      cells[index].style.backgroundColor = "red";
+    });
+  }
 }
 
 function disableBoard() {
@@ -402,7 +408,7 @@ function setupWebSocket() {
         loading.innerHTML = "Searching opponent...";
       } else if (data.type === "opponent") {
         let opponentName = data.name;
-        if (data.name == "player1" || data.name=="" || !data.name) {
+        if (data.name == "player1" || data.name == "" || !data.name) {
           opponentName = "Opponent";
         }
         opponent.innerHTML =
