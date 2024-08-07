@@ -262,7 +262,7 @@ restart.onclick = () => {
 function swapTurn() {
   turn = turn === "X" ? "O" : "X";
   if (gameType === "Online") {
-    isMyTurn = gameType === "Online" && turn === playerSymbol; // Update turn status
+    isMyTurn = turn === playerSymbol; // Update turn status
     updateCellClickability();
   } // Update cell clickability based on new turn
 }
@@ -398,7 +398,7 @@ function setupWebSocket() {
 
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
-      console.log("data", data);
+      // console.log("data", data);
 
       if (data.type === "start") {
         matchFoundSound.play();
@@ -429,10 +429,14 @@ function setupWebSocket() {
     });
 
     socket.addEventListener("open", () => {
-      console.log("WebSocket connection established.");
+      console.log("Connection established.");
     });
 
     socket.addEventListener("error", (error) => {
+      loading.style.display = "flex";
+      loading.innerHTML =
+        "Error establishing connection. Please refresh and try again.";
+
       console.error("WebSocket error:", error);
     });
 

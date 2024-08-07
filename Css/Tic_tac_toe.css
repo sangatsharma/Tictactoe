@@ -33,12 +33,12 @@ body {
 
 #loading {
   display: none;
+  text-align: center;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-  width: 100vw;
   font-size: 1.5rem;
   font-weight: bold;
+  margin: -200px 20px;
 }
 #onlineInfo {
   display: none;
@@ -186,7 +186,8 @@ h3:hover {
   border-radius: 10px;
   font-size: 1.5rem;
 }
-#userName:focus,#userName:hover{
+#userName:focus,
+#userName:hover {
   border: 2px solid white;
   outline: none;
 }
