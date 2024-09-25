@@ -1,31 +1,31 @@
 {
   "name": "Tic-Tac-Toe Game",
   "short_name": "Tic-Tac-Toe",
-  "start_url": "/index.html",
+  "start_url": "/Tictactoe/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "icons/manifest-icon-192.maskable.png",
+      "src": "/Tictactoe/icons/manifest-icon-192.maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/manifest-icon-192.maskable.png",
+      "src": "/Tictactoe/icons/manifest-icon-192.maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "icons/manifest-icon-512.maskable.png",
+      "src": "/Tictactoe/icons/manifest-icon-512.maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/manifest-icon-512.maskable.png",
+      "src": "/Tictactoe/icons/manifest-icon-512.maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
