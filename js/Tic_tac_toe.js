@@ -82,7 +82,6 @@ var textField = document.getElementById("userName");
 var turn;
 // for aiPlayer
 let COUNT = 1;
-var win = null;
 var Board = ["", "", "", "", "", "", "", "", ""];
 var aiPlayer, human;
 //for online multiplayer
@@ -250,32 +249,34 @@ function result(e) {
   board.style.zIndex = -1;
   endgame.style.visibility = "visible";
   endgame.style.zIndex = 1;
- 
 }
 
-restart.onclick =()=>{
+restart.onclick = () => {
   buttonClickSound.play();
   resetGame();
-}
+};
 
 function resetGame() {
   if (gameType === "Online") {
     socket.close();
     window.location.reload();
+  } else {
+    COUNT = 1;
+    
+    Board = ["", "", "", "", "", "", "", "", ""];
+    cells.forEach((cell) => {
+      cell.innerHTML = "";
+      cell.style.backgroundColor = "silver";
+      cell.style.pointerEvents = "auto";
+      cell.style.cursor = "pointer";
+      cell.classList.remove("clicked");
+      cell.addEventListener("click", tick, { once: true });
+    });
+    endgame.style.visibility = "hidden";
+    board.style.visibility = "hidden";
+    introScreen.style.visibility = "visible";
+    playTypeContainer.style.display = "flex";
   }
-  Board = ["", "", "", "", "", "", "", "", ""];
-  cells.forEach((cell) => {
-    cell.innerHTML = "";
-    cell.style.backgroundColor = "silver";
-    cell.style.pointerEvents = "auto";
-    cell.style.cursor = "pointer";
-    cell.classList.remove("clicked");
-    cell.addEventListener("click", tick, { once: true });
-  });
-  endgame.style.visibility = "hidden";
-  board.style.visibility = "hidden";
-  introScreen.style.visibility = "visible";
-  playTypeContainer.style.display = "flex";
 }
 
 //Swap turn between players X and O
