@@ -253,9 +253,24 @@ function result(e) {
 }
 restart.onclick = () => {
   buttonClickSound.play();
-  setTimeout(() => {
-    location.reload();
-  }, 100);
+  if (navigator.onLine) {
+    window.location.reload();
+  } else {
+    // If offline, serve the cached index.html
+    caches.match("/Tictactoe/index.html").then((response) => {
+      if (response) {
+        // Serve cached index.html if available
+        response.text().then((text) => {
+          document.open();
+          document.write(text);
+          document.close();
+        });
+      } else {
+        // Notify user if index.html is not cached
+        alert("You are offline and index.html is not cached.");
+      }
+    });
+  }
 };
 
 //Swap turn between players X and O
