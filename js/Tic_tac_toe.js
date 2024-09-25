@@ -250,28 +250,31 @@ function result(e) {
   board.style.zIndex = -1;
   endgame.style.visibility = "visible";
   endgame.style.zIndex = 1;
-}
-restart.onclick = () => {
-  buttonClickSound.play();
-  if (navigator.onLine) {
-    window.location.reload();
-  } else {
-    // If offline, serve the cached index.html
-    caches.match("/Tictactoe/index.html").then((response) => {
-      if (response) {
-        // Serve cached index.html if available
-        response.text().then((text) => {
-          document.open();
-          document.write(text);
-          document.close();
-        });
-      } else {
-        // Notify user if index.html is not cached
-        alert("You are offline and index.html is not cached.");
-      }
-    });
+  if (gameType === "Online") {
+    socket.close();
   }
-};
+}
+
+restart.onclick =()=>{
+  buttonClickSound.play();
+  resetGame();
+}
+
+function resetGame() {
+  Board = ["", "", "", "", "", "", "", "", ""];
+  cells.forEach((cell) => {
+    cell.innerHTML = "";
+    cell.style.backgroundColor = "silver";
+    cell.style.pointerEvents = "auto";
+    cell.style.cursor = "pointer";
+    cell.classList.remove("clicked");
+    cell.addEventListener("click", tick, { once: true });
+  });
+  endgame.style.visibility = "hidden";
+  board.style.visibility = "hidden";
+  introScreen.style.visibility = "visible";
+  playTypeContainer.style.display = "flex";
+}
 
 //Swap turn between players X and O
 function swapTurn() {
