@@ -264,7 +264,7 @@ function resetGame() {
     Board = ["", "", "", "", "", "", "", "", ""];
     cells.forEach((cell) => {
       cell.innerHTML = "";
-      cell.style.backgroundColor = "silver";
+      cell.style.backgroundColor = "none";
       cell.style.pointerEvents = "auto";
       cell.style.cursor = "pointer";
       cell.classList.remove("clicked");
