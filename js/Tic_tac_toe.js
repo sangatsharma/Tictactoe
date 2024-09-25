@@ -250,9 +250,7 @@ function result(e) {
   board.style.zIndex = -1;
   endgame.style.visibility = "visible";
   endgame.style.zIndex = 1;
-  if (gameType === "Online") {
-    socket.close();
-  }
+ 
 }
 
 restart.onclick =()=>{
@@ -261,6 +259,10 @@ restart.onclick =()=>{
 }
 
 function resetGame() {
+  if (gameType === "Online") {
+    socket.close();
+    window.location.reload();
+  }
   Board = ["", "", "", "", "", "", "", "", ""];
   cells.forEach((cell) => {
     cell.innerHTML = "";
