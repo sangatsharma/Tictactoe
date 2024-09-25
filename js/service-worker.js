@@ -8,11 +8,16 @@ const urlsToCache = [
   '/Tictactoe/icons/manifest-icon-512.maskable.png'
 ];
 
-self.addEventListener("install", (event) => {
+
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        return cache.addAll(urlsToCache);
+      })
+      .catch((error) => {
+        console.error('Failed to cache:', error);
+      })
   );
 });
 
