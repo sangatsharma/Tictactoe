@@ -257,12 +257,10 @@ restart.onclick = () => {
 };
 
 function resetGame() {
-  if (gameType === "Online") {
-    socket.close();
+  if (navigator.onLine) {
     window.location.reload();
   } else {
     COUNT = 1;
-    
     Board = ["", "", "", "", "", "", "", "", ""];
     cells.forEach((cell) => {
       cell.innerHTML = "";
