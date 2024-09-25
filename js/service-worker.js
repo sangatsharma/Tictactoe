@@ -1,11 +1,11 @@
 const CACHE_NAME = "tic-tac-toe-cache-v1";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/Css/Tic_tac_toe.css",
-  "/js/Tic_tac_toe.js",
-  "/icons/manifest-icon-192.maskable.png",
-  "/icons/manifest-icon-512.maskable.png",
+  '/Tictactoe/',                 
+  '/Tictactoe/index.html',     
+  '/Tictactoe/style.css',
+  '/Tictactoe/script.js',
+  '/Tictactoe/icons/manifest-icon-192.maskable.png',
+  '/Tictactoe/icons/manifest-icon-512.maskable.png'
 ];
 
 self.addEventListener("install", (event) => {
@@ -15,14 +15,6 @@ self.addEventListener("install", (event) => {
     })
   );
 });
-
-// self.addEventListener("fetch", (event) => {
-//   event.respondWith(
-//     caches.match(event.request).then((response) => {
-//       return response || fetch(event.request);
-//     })
-//   );
-// });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
