@@ -6,6 +6,15 @@ const urlsToCache = [
   "/Tictactoe/script.js",
   "/Tictactoe/icons/manifest-icon-192.maskable.png",
   "/Tictactoe/icons/manifest-icon-512.maskable.png",
+  "/Tictactoe/screenshots/screenshot1-wide.png",
+  "/Tictactoe/screenshots/screenshot2-narrow.png",
+  "/Tictactoe/sounds/boardclick.mp3",
+  "/Tictactoe/sounds/buttonClick.mp3",
+  "/Tictactoe/sounds/gameMusic.mp3",
+  "/Tictactoe/sounds/matchDraw.mp3",
+  "/Tictactoe/sounds/matchFound.mp3",
+  "/Tictactoe/sounds/matchLost.mp3",
+  "/Tictactoe/sounds/matchWin.mp3",
 ];
 
 self.addEventListener("install", (event) => {
@@ -37,7 +46,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== 'GET') {
+  if (event.request.method !== "GET") {
     return;
   }
 
