@@ -30,5 +30,18 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/Tictactoe/screenshots/screenshot1-wide.png",
+      "sizes": "1280x579",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/Tictactoe/screenshots/screenshot2-narrow.png",
+      "sizes": "720x1094",
+      "type": "image/png"
+    }
   ]
 }
