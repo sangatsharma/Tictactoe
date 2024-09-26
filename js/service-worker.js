@@ -37,6 +37,10 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   event.respondWith(
     caches
       .match(event.request)
@@ -52,8 +56,7 @@ self.addEventListener("fetch", (event) => {
         );
       })
       .catch((err) => {
-        // Fallback: return offline page if fetch and cache both fail
-        alert(err);
+        console.error("Fetch failed; returning offline page instead.", err);
         return caches.match("/Tictactoe/index.html"); // Or a custom offline page
       })
   );

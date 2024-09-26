@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="/Tictactoe/manifest.json">
+    <link rel="manifest" href="/Tictactoe/manifest.json" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
       rel="stylesheet"
@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
- 
+
     <link rel="stylesheet" type="text/css" href="Css/Tic_tac_toe.css" />
     <title>Tic Tac Toe</title>
   </head>
@@ -117,17 +117,21 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/Tictactoe/js/service-worker.js").then(
-          (registration) => {
-            console.log(
-              "Service Worker registered with scope:",
-              registration.scope
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/Tictactoe/js/service-worker.js")
+            .then(
+              (registration) => {
+                console.log(
+                  "Service Worker registered with scope:",
+                  registration.scope
+                );
+              },
+              (error) => {
+                console.log("Service Worker registration failed:", error);
+              }
             );
-          },
-          (error) => {
-            console.log("Service Worker registration failed:", error);
-          }
-        );
+        });
       }
     </script>
   </body>
