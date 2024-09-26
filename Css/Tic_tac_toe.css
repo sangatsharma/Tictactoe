@@ -107,6 +107,19 @@ table tr td:last-child {
   border-right: 0;
 }
 
+#installButton {
+  display: none;
+  background-color: greenyellow;
+  height: 50px;
+  border-radius: 5%;
+  cursor: pointer;
+  scale: 0.9;
+  
+}
+#installButton:hover {
+  scale: 1;
+}
+
 .introtext {
   width: 100%;
   position: absolute;
@@ -120,7 +133,6 @@ table tr td:last-child {
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
     width: 90%;
-    margin: 35% 3%;
   }
 }
 
