@@ -108,7 +108,7 @@ table tr td:last-child {
 }
 
 #installButton {
-  display: flex;
+  display: none;
   height: 50px;
   border-radius: 5%;
   cursor: pointer;
