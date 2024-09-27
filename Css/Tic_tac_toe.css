@@ -108,15 +108,18 @@ table tr td:last-child {
 }
 
 #installButton {
-  display: none;
-  background-color: greenyellow;
+  display: flex;
   height: 50px;
   border-radius: 5%;
   cursor: pointer;
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 8px;
   scale: 0.9;
   
 }
 #installButton:hover {
+  border: 1px solid white;
   scale: 1;
 }
 
