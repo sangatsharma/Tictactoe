@@ -506,14 +506,14 @@ function isAppInstalled() {
   );
 }
 
-// Function to show the install button
-function showInstallButton() {
-  const installButton = document.getElementById("installButton");
-  installButton.style.display = "block";
+window.addEventListener("beforeinstallprompt", (event) => {
+  // Prevent the mini-infobar from appearing on mobile
+  event.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = event;
 
-  installButton.addEventListener("click", () => {
-    // Hide the install button
-    installButton.style.display = "none";
+  // Only show the install button if the app is not already installed
+  if (!isAppInstalled()) {
     // Show the install prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
@@ -525,17 +525,5 @@ function showInstallButton() {
       }
       deferredPrompt = null;
     });
-  });
-}
-
-window.addEventListener("beforeinstallprompt", (event) => {
-  // Prevent the mini-infobar from appearing on mobile
-  event.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = event;
-
-  // Only show the install button if the app is not already installed
-  if (!isAppInstalled()) {
-    showInstallButton();
   }
 });
