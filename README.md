@@ -1,5 +1,6 @@
 # Tic-Tac-Toe Game with Unbeatable AI and Multiplayer Support
 
+
 [![Play Now](https://img.shields.io/badge/Play-Now-green.svg)](https://sangatsharma.github.io/Tictactoe/)
 
 Welcome to the Tic-Tac-Toe game where you can challenge an unbeatable AI powered by the Minimax algorithm with Alpha-Beta pruning or compete with other players online! Test your skills against the AI, match against other players in real-time, or enjoy a classic offline two-player game.
